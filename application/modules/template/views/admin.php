@@ -1,3 +1,3 @@
 <?php  
-	echo "ahoy";
+	echo "<h1>ADMIN PANEL</h1>";
 ?>
