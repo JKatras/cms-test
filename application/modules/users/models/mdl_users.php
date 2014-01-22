@@ -10,6 +10,20 @@ $table = "users";
 return $table;
 }
 
+function pword_check($username, $pword) {
+	$table = $this->get_table();
+	$this->db->where('username', $username);
+	$this->db->where('pword', $pword);
+	$query=$this->db->get($table);
+	$num_rows = $query->num_rows();
+	
+	if ($num_rows>0) {
+		return TRUE;
+	}else {
+		return FALSE;
+	}
+}
+
 function get($order_by){
 $table = $this->get_table();
 $this->db->order_by($order_by);

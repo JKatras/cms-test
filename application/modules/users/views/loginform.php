@@ -1,5 +1,7 @@
 <h1>Please Log In</h1>
 <?php
+echo validation_errors();
+
 echo form_open('users/submit');
 
 echo 'Username ';

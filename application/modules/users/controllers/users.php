@@ -4,9 +4,33 @@ class Users extends MX_Controller
 {
 
 function __construct() {
-parent::__construct();
+	parent::__construct();
+}
+public function submit(){
+	$this->load->library('form_validation');
+
+	$this->form_validation->set_rules('username', 'Username', 'required|max_length[30]|xss_clean|');
+	$this->form_validation->set_rules('pword', 'Password', 'required|max_length[30]|xss_clean|callback_pword_check');
+
+	if ($this->form_validation->run($this) == FALSE){
+		$this->login();
+	}else{
+		echo 'success'; die();
+	}
 }
 
+public function pword_check($pword){
+
+	$username = $this->input->post('username', TRUE);
+	$this->load->model('mdl_users');
+	$result = $this->mdl_users->pword_check($username, $pword);
+	if ($str == 'test'){
+		$this->form_validation->set_message('pword_check', 'The %s field can not be the word "test"');
+		return FALSE;
+	}else{
+		return TRUE;
+	}
+}
 function login() {
 	$data['view_file'] = "loginform";
 	$this->load->module('template');
