@@ -24,8 +24,8 @@ public function pword_check($pword){
 	$username = $this->input->post('username', TRUE);
 	$this->load->model('mdl_users');
 	$result = $this->mdl_users->pword_check($username, $pword);
-	if ($str == 'test'){
-		$this->form_validation->set_message('pword_check', 'The %s field can not be the word "test"');
+	if ($result == FALSE){
+		$this->form_validation->set_message('pword_check', 'The Username and/or Password were incorrect.');
 		return FALSE;
 	}else{
 		return TRUE;
