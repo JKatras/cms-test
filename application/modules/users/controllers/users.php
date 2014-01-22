@@ -20,7 +20,7 @@ public function submit(){
 	$this->load->library('form_validation');
 
 	$this->form_validation->set_rules('username', 'Username', 'required|max_length[30]|xss_clean|');
-	$this->form_validation->set_rules('pword', 'Password', 'required|max_length[30]|xss_clean|callback_pword_check');
+	$this->form_validation->set_rules('pword', 'Password', 'required|max_length[60]|xss_clean|callback_pword_check');
 
 	if ($this->form_validation->run($this) == FALSE){
 		$this->login();
@@ -38,6 +38,7 @@ public function pword_check($pword){
 	$result = $this->mdl_users->pword_check($username, $pword);
 	if ($result == FALSE){
 		$this->form_validation->set_message('pword_check', 'The Username and/or Password were incorrect.');
+		echo($pword);
 		return FALSE;
 	}else{
 		return TRUE;
