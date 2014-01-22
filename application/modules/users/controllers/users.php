@@ -6,6 +6,16 @@ class Users extends MX_Controller
 function __construct() {
 	parent::__construct();
 }
+
+function goto_admin($username) {
+	//give session variable, send user to admin panel
+	$query = $this->get_where_custom('username', $username);
+	foreach ($query->result() as $row) {
+		$user_id = $row->id;
+	}
+	$this->session->set_userdata('user_id', $user_id);
+	echo "hello $user_id"; 
+}
 public function submit(){
 	$this->load->library('form_validation');
 
@@ -15,13 +25,15 @@ public function submit(){
 	if ($this->form_validation->run($this) == FALSE){
 		$this->login();
 	}else{
-		echo 'success'; die();
+		$username = $this->input->post('username', TRUE);
+		$this->goto_admin($username);
 	}
 }
 
 public function pword_check($pword){
 
 	$username = $this->input->post('username', TRUE);
+	$pword = Modules::run('security/make_hash', $pword);
 	$this->load->model('mdl_users');
 	$result = $this->mdl_users->pword_check($username, $pword);
 	if ($result == FALSE){
