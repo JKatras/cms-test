@@ -7,6 +7,8 @@ class Security extends MX_Controller
 	}
 	function make_hash($password) {
 		$hash = $this->bcrypt->hash_password($password);
+//		$data = array('pword' => $hash);
+//		$this->db->update('users', $data); 
 		return $hash;
 	}
 }

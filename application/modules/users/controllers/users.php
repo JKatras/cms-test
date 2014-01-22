@@ -31,11 +31,11 @@ public function submit(){
 }
 
 public function pword_check($pword){
-
+//	$pass = $pword;
 	$username = $this->input->post('username', TRUE);
-	$pword = Modules::run('security/make_hash', $pword);
+	$hash = Modules::run('security/make_hash', $pword);
 	$this->load->model('mdl_users');
-	$result = $this->mdl_users->pword_check($username, $pword);
+	$result = $this->mdl_users->pword_check($username, $pword, $hash);
 	if ($result == FALSE){
 		$this->form_validation->set_message('pword_check', 'The Username and/or Password were incorrect.');
 		echo($pword);

@@ -10,18 +10,23 @@ $table = "users";
 return $table;
 }
 
-function pword_check($username, $pword) {
+function pword_check($username, $pword, $hash) {
 	$table = $this->get_table();
 	$this->db->where('username', $username);
-	$this->db->where('pword', $pword);
-	$query=$this->db->get($table);
-	$num_rows = $query->num_rows();
 	
-	if ($num_rows>0) {
+//	$this->db->where('pword', $pword);
+	$query=$this->db->get($table);
+//	$num_rows = $query->num_rows();
+	if ($this->bcrypt->check_password($pword, $hash)){
 		return TRUE;
-	}else {
+	}else{
 		return FALSE;
 	}
+//	if ($num_rows>0) {
+//		return TRUE;
+//	}else {
+//		return FALSE;
+//	}
 }
 
 function get($order_by){
