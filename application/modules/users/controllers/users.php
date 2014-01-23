@@ -7,14 +7,14 @@ function __construct() {
 	parent::__construct();
 }
 
-function goto_admin($username) {
+function _goto_admin($username) {
 	//give session variable, send user to admin panel
 	$query = $this->get_where_custom('username', $username);
 	foreach ($query->result() as $row) {
 		$user_id = $row->id;
 	}
 	$this->session->set_userdata('user_id', $user_id);
-	echo "hello $user_id"; 
+	redirect('dashboard/home'); 
 }
 public function submit(){
 	$this->load->library('form_validation');
@@ -26,19 +26,28 @@ public function submit(){
 		$this->login();
 	}else{
 		$username = $this->input->post('username', TRUE);
-		$this->goto_admin($username);
+		$this->_goto_admin($username);
 	}
 }
 
 public function pword_check($pword){
 //	$pass = $pword;
 	$username = $this->input->post('username', TRUE);
-	$hash = Modules::run('security/make_hash', $pword);
+//	$pword = Modules::run('site_security/make_hash', $pword);
 	$this->load->model('mdl_users');
-	$result = $this->mdl_users->pword_check($username, $pword, $hash);
+	
+//	if ($this->bcrypt->check_password($pword, $hash) && $this->db->where('username', $username)){
+//		echo('YEP');
+//		return TRUE;
+//	}else{
+//		echo('NOPE');
+//		return FALSE;
+//	}
+	
+	$result = $this->mdl_users->pword_check($username, $pword);
 	if ($result == FALSE){
 		$this->form_validation->set_message('pword_check', 'The Username and/or Password were incorrect.');
-		echo($pword);
+//		echo($pword);
 		return FALSE;
 	}else{
 		return TRUE;
