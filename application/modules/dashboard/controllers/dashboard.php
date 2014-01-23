@@ -8,6 +8,10 @@ function __construct() {
 function home() {
 	echo "Welcome to Dashboard";
 }
-
+function cms_links() {
+	$data['view_file'] = 'cms_links';
+	$this->load->module('template');
+	$this->template->admin($data);
+}
 
 }
