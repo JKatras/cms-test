@@ -141,31 +141,3 @@ return $query;
 }
 
 }
-//
-//	function __construct() {
-//		parent::__construct();
-//	}
-//	function public_one_col() {
-//		$data = '';
-//		$this->load->view('public_one_col', $data);
-//	}
-//	function admin()
-//	{
-//		$data = '';
-//		$this->load->view('admin');
-//	}
-//	function __construct() {
-//		parent::__construct();
-//	}
-//	function index() {
-//		$data='';
-//		$this->load->view('admin', $data);
-//		$this->load->model('mdl_webpages');
-//		$data['query'] = $this->mdl_webpages->get('userId');
-//		$this->load->view('display', $data);
-//	}
-//	function admin() {
-//	
-//		$data = '';
-//		$this->load->view('admin', $data);
-//	}
