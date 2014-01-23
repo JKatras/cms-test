@@ -15,14 +15,22 @@ function manage() {
 	$this->template->admin($data);
 }
 
-function create() {
-	$data['page_headline'] = '';
-	$data['update_id'] = '';
-	$data['page_title'] = '';
-	$data['keywords'] = '';
-	$data['description'] = '';
-	$data['page_content'] = '';
-	
+function get_data_from_post() {
+	$data['page_headline'] = $this->input->post('page_headline', TRUE);
+	$data['page_title'] = $this->input->post('page_title', TRUE);
+	$data['keywords'] = $this->input->post('keywords', TRUE);
+	$data['description'] = $this->input->post('description', TRUE);
+	$data['page_content'] = $this->input->post('page_content', TRUE);
+	return $data;
+}
+
+function get_data_from_db($update_id) {
+	$query = $this->get_where();
+	foreach ($query->result() as $row) {
+		
+	} 
+}
+function create() {	
 	$data['view_file'] = 'create';
 	$this->load->module('template');
 	$this->template->admin($data);
