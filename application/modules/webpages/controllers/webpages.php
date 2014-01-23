@@ -27,8 +27,18 @@ function get_data_from_post() {
 function get_data_from_db($update_id) {
 	$query = $this->get_where();
 	foreach ($query->result() as $row) {
-		
+		$data['page_headline'] = $row->page_headline;
+		$data['page_title'] = $row->page_title;
+		$data['keywords'] = $row->keywords;
+		$data['description'] = $row->description;
+		$data['page_content'] = $row->page_content;
+	}
+	
+	if (!isset($data)) {
+		$data = '';
 	} 
+	
+	return $data;
 }
 function create() {	
 	$data['view_file'] = 'create';
