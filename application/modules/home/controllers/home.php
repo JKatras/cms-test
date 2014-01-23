@@ -13,7 +13,7 @@ public function index() {
 //	$this->template->header($data);
 //	$this->template->home_gallery($data);
 //	$this->template->footer($data);
-	//$this->load->view('header');
+	$this->load->view('header');
 	
 	if(!empty($_GET["action"])){
 	
