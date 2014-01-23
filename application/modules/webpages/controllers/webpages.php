@@ -16,10 +16,38 @@ function manage() {
 }
 
 function create() {
+	$data['page_headline'] = '';
+	$data['update_id'] = '';
+	$data['page_title'] = '';
+	$data['keywords'] = '';
+	$data['description'] = '';
+	$data['page_content'] = '';
+	
 	$data['view_file'] = 'create';
 	$this->load->module('template');
 	$this->template->admin($data);
 }
+
+function submit() {
+	$this->load->library('form_validation');
+
+	$this->form_validation->set_rules('page_headline', 'Page Headline', 'required|xss_clean');
+	$this->form_validation->set_rules('page_content', 'Page Content', 'required|xss_clean');
+
+	if ($this->form_validation->run($this) == FALSE){
+		$this->create();
+	}else{
+		$update_id = $this->uri->segment(3);
+		if (is_numeric($update_id)) {
+			$this->_update($update_id, $data);
+		}else {
+			$this->_insert($data);
+		}
+		
+		redirect('webpages/manage');
+	}
+}
+
 function get($order_by){
 $this->load->model('mdl_webpages');
 $query = $this->mdl_webpages->get($order_by);
