@@ -25,7 +25,7 @@ function get_data_from_post() {
 }
 
 function get_data_from_db($update_id) {
-	$query = $this->get_where();
+	$query = $this->get_where($update_id);
 	foreach ($query->result() as $row) {
 		$data['page_headline'] = $row->page_headline;
 		$data['page_title'] = $row->page_title;
@@ -43,6 +43,7 @@ function get_data_from_db($update_id) {
 function create() {	
 	$update_id = $this->uri->segment(3);
 	$submit = $this->input->post('submit', TRUE);
+	
 	if ($submit=="Submit") {
 		$data = $this->get_data_from_post();
 	}else {
