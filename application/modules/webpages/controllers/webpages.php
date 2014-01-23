@@ -41,6 +41,20 @@ function get_data_from_db($update_id) {
 	return $data;
 }
 function create() {	
+	$update_id = $this->uri->segment(3);
+	$submit = $this->input->post('submit', TRUE);
+	if ($submit=="Submit") {
+		$data = $this->get_data_from_post();
+	}else {
+		if (is_numeric($update_id)) {
+			$data = $this->get_data_from_db($update_id);
+		}
+	}
+	if (!isset($data)) {
+		$data = $this->get_data_from_post();
+	}
+	$data['update_id'] = $update_id;
+	
 	$data['view_file'] = 'create';
 	$this->load->module('template');
 	$this->template->admin($data);
@@ -55,6 +69,8 @@ function submit() {
 	if ($this->form_validation->run($this) == FALSE){
 		$this->create();
 	}else{
+		$data = $this->get_data_from_post();
+		$data['page_url'] = url_title($data['page_headline']);
 		$update_id = $this->uri->segment(3);
 		if (is_numeric($update_id)) {
 			$this->_update($update_id, $data);
