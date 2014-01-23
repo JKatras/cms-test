@@ -7,6 +7,19 @@ function __construct() {
 	parent::__construct();
 }
 
+function manage() {
+	$data['query'] = $this->get('page_headline');
+
+	$data['view_file'] = 'manage';
+	$this->load->module('template');
+	$this->template->admin($data);
+}
+
+function create() {
+	$data['view_file'] = 'create';
+	$this->load->module('template');
+	$this->template->admin($data);
+}
 function get($order_by){
 $this->load->model('mdl_webpages');
 $query = $this->mdl_webpages->get($order_by);

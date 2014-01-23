@@ -14,7 +14,7 @@ echo form_open('webpages/submit/'.$update_id);
               'name'        => 'page_headline',
               'id'          => 'page_headline',
               'value'       =>  $page_headline,
-              'maxlength'   => '230',
+              'maxlength'   => '240',
               'size'        => '50',
               'style'       => 'width:320px',
             );
