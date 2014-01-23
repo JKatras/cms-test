@@ -1,23 +1,31 @@
-<h2>Content Management System</h2>
+<h3>Content Management System</h3>
 
 <?php
 echo anchor('webpages/create', '<p>Create New Page</p>');
 ?>
 
 
-<table width="600" cellspacing="0" cellpadding="8" border="1">
-    <tr style="background-color: navy; color: white;"><th>Page Headline</th><th>Edit</th><th>Delete</th></tr>
+<table>
+    <tr>
+    	<th width="450">Page Headline</th>
+    	<th width="150"></th>
+    	<!--<th>Edit</th>
+    	<th>Delete</th>-->
+    </tr>
     <?php
     foreach($query->result() as $row) {
-        
         $edit_url = base_url()."webpages/create/".$row->id;
-        $delete_url = base_url()."webpages/deleteconf/".$row->id;
+//      $delete_url = base_url()."webpages/deleteconf/".$row->id;
         $page_headline = $row->page_headline;
-        
-       ?>
-    <tr><td><?php echo $page_headline; ?></td><td><?php 
-    echo anchor($edit_url, 'Edit');
-    ?></td><td><?php
+    ?>
+    <tr>
+    	<td><?php echo $page_headline; ?></td>
+    	<td><?php echo anchor($edit_url, 'Edit');?></td>
+    </tr>
+    <?php 
+    } ?>
+</table>
+<!--<?php
     
     
     
@@ -29,9 +37,6 @@ echo anchor('webpages/create', '<p>Create New Page</p>');
         echo anchor($delete_url, 'Delete');
     }
     
-    ?></td></tr>
-    <?php
-    }
-    ?>
+    ?></td>-->
    
-</table>
+   

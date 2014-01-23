@@ -1,109 +1,90 @@
-<h2>Create New Page</h2>
+<div class="row">
+<div class="small-12 columns">
+	<h3>Create New Page</h3>
+</div>
+</div>
 <?php
 
 echo validation_errors("<p style='color: red;'>", "</p>");
 
-
 echo form_open('webpages/submit/'.$update_id);
 ?>
-
-<table width="900" cellpadding="8" cellspacing="0" border="0">
-    <tr><td>Page Headline: 
-          <?php  
-           $data = array(
+<div class="row">
+	<div class="small-12 columns large-6 columns">
+	    <label>Page Headline</label> 
+	    	<?php  
+           	$data = array(
               'name'        => 'page_headline',
               'id'          => 'page_headline',
               'value'       =>  $page_headline,
               'maxlength'   => '240',
-              'size'        => '50',
-              'style'       => 'width:320px',
-            );
-
-        echo form_input($data); 
-        ?>
-            
-            
-            
-        </td><td>
-            
-            
-          Page Title: 
-          <?php  
-           $data = array(
+            ); 
+            echo form_input($data); 
+	        ?>
+	</div>
+	<div class="small-12 columns large-6 columns"> 
+    	<label>Page Title</label> 
+        	<?php  
+            $data = array(
               'name'        => 'page_title',
               'id'          => 'page_title',
               'value'       =>  $page_title,
               'maxlength'   => '230',
-              'size'        => '50',
-              'style'       => 'width:320px',
             );
-
-        echo form_input($data); 
-        ?>  
-            
-            
-            
-        </td</tr>
-    <tr><td colspan="2">Keywords: <?php  
-           $data = array(
+			echo form_input($data); 
+        	?>
+    </div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+       <label>Keywords</label>
+       		<?php  
+           	$data = array(
               'name'        => 'keywords',
               'id'          => 'keywords',
               'value'       =>  $keywords,
               'maxlength'   => '230',
-              'size'        => '50',
-              'style'       => 'width:800px',
             );
-
-        echo form_input($data); 
-        ?>  </td></tr>
-    <tr><td colspan="2">
-            
-            
-            Page Description: <?php  
-           $data = array(
+			echo form_input($data); 
+        	?>  
+    </div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+    	<label>Page Description</label> 
+        	<?php  
+           	$data = array(
               'name'        => 'description',
               'id'          => 'description',
               'value'       =>  $description,
               'maxlength'   => '230',
-              'size'        => '50',
-              'style'       => 'width:750px',
             );
-
-        echo form_input($data); 
-        ?>
-            
-            
-        </td></tr>
-    <tr><td colspan="2">Page Content: <br>
-        
-        <?php  
-           $data = array(
+       	 	echo form_input($data); 
+        	?>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns"> 
+        <label>Page Content</label>
+       		<?php  
+           	$data = array(
               'name'        => 'page_content',
               'id'          => 'page_content',
               'value'       =>  $page_content,
-              'rows'   => '30',
+              'rows'   		=> '30',
               'cols'        => '50',
-              'style'       => 'width:890px',
             );
-
-        echo form_textarea($data); 
-        ?>
-        
-        
-        
-        
-        </td></tr>
-    
-    
-    
-    
-    <tr><td colspan="2" align="center">
-        <?php echo form_submit('submit', 'Submit'); ?>
-    </td></tr>
-    
-    
-    
-</table>
-
+        	echo form_textarea($data); 
+        	?>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+			<?php 
+			echo form_submit ('submit', 'Submit'); 
+			?>
+	</div>
+</div>
 <?php
 echo form_close();
+?>
